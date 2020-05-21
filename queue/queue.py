@@ -13,6 +13,8 @@ return elements in First In First Out order.
    Make sure the Queue tests pass.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Queue?
+   Using an Array the data is stored in memory in a line while the linked list 
+   is stored in memory as individual nodes pointing to the next list item. 
    
 Stretch: What if you could only use instances of your Stack class to implement the Queue?
          What would that look like? How many Stacks would you need? Try it!
