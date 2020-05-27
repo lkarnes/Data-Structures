@@ -24,10 +24,12 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-        node = self.dict[key]
-        self.storage.move_to_end()
-        if node:
-            return node
+        current_position = self.storage.head
+        if key in self.dict.keys():
+            while current_position != None and self.dict[key] != current_position.value:
+                    current_position = current_position.next
+            self.storage.move_to_front(current_position)
+            return current_position.value
         else: 
             return None
     """
@@ -46,17 +48,14 @@ class LRUCache:
             self.storage.add_to_head(value)
             self.length += 1
         elif key in self.dict.keys():
+            position = self.storage.head
+            while self.dict[key] != position.value:
+                position = position.next
+            position.value = value
             self.dict[key] = value
         else: 
             new_dict = {key:val for key, val in self.dict.items() if self.storage.tail.value != val}
             self.dict = new_dict
             self.dict[key] = value
             self.storage.add_to_head(value)
-            self.storage.tail.delete()
-
-# lru = LRUCache(2)
-# lru.set('item1', 1)
-# lru.set('item2', 2)
-# lru.set('item3', 3)
-# lru.set('item3', 4)
-# print(lru.dict)
+            self.storage.remove_from_tail()
