@@ -16,6 +16,7 @@ O(1)
 O(1)
 3. What is the runtime complexity of `len`?
 O(n)
+
 ## Binary Search Tree
 
 1. What is the runtime complexity of `insert`? 
